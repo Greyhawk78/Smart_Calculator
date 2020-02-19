@@ -39,7 +39,7 @@ public class Main {
                         System.out.println(input);
                     } else if (verifySum(input, variables)) {
                         BigInteger result=(calculate(input, variables));
-                        if (!result.equals(BigInteger.valueOf(234))) System.out.println(result);
+                        if (result != null) System.out.println(result);
                     } else {
 
                         if (verifyVar(input)) {
@@ -141,7 +141,7 @@ public class Main {
         } catch (Exception e) {
         System.out.println("Invalid expression");
         }
-        return BigInteger.valueOf(234);
+        return null;
     }
 }
 

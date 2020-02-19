@@ -1,0 +1,19 @@
+# Project exclude paths
+/.gradle/
+/Problems/Check IP address/out/
+/Problems/Check IP address/out/production/classes/
+/Problems/Vehicle registration number/out/
+/Problems/Vehicle registration number/out/production/classes/
+/Problems (2)/Start or end of a word/out/
+/Problems (2)/Start or end of a word/out/production/classes/
+/Problems (3)/Remove extra spaces/out/
+/Problems (3)/Remove extra spaces/out/production/classes/
+/Problems (5)/Remove comments/out/
+/Problems (5)/Remove comments/out/production/classes/
+/Problems (9)/Html Parser/out/
+/Problems (9)/Html Parser/out/production/classes/
+/Problems (11)/Getting the max element of a stack/out/
+/Problems (11)/Getting the max element of a stack/out/production/classes/
+/Smart Calculator/task/build/
+/Smart Calculator/task/out/
+/Smart Calculator/task/out/production/classes/

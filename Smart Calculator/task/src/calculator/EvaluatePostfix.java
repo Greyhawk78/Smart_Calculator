@@ -1,15 +1,16 @@
 package calculator;
 
+import java.math.BigInteger;
 import java.util.Stack;
 
 class EvaluatePostfix
 
 {
     // Method to evaluate value of a postfix expression
-    static int evaluatePostfix(String exp)
+    static BigInteger evaluatePostfix(String exp)
     {
         //create a stack
-        Stack<Integer> stack = new Stack<>();
+        Stack<BigInteger> stack = new Stack<>();
 
         // Scan all characters one by one
         for(int i = 0; i < exp.length(); i++)
@@ -24,12 +25,12 @@ class EvaluatePostfix
                 // Push it to the stack.
             else if(Character.isDigit(c))
             {
-                int n = 0;
+                BigInteger n = BigInteger.ZERO;
 
                 //extract the characters and store it in num
                 while(Character.isDigit(c))
                 {
-                    n = n*10 + (int)(c-'0');
+                    n = n.multiply(BigInteger.valueOf(10)).add(BigInteger.valueOf((int)(c-'0')));
                     i++;
                     c = exp.charAt(i);
                 }
@@ -43,25 +44,25 @@ class EvaluatePostfix
             // elements from stack apply the operator
             else
             {
-                int val1 = stack.pop();
-                int val2 = stack.pop();
+                BigInteger val1 = stack.pop();
+                BigInteger val2 = stack.pop();
 
                 switch(c)
                 {
                     case '+':
-                        stack.push(val2+val1);
+                        stack.push(val2.add(val1));
                         break;
 
                     case '-':
-                        stack.push(val2- val1);
+                        stack.push(val2.subtract(val1));
                         break;
 
                     case '/':
-                        stack.push(val2/val1);
+                        stack.push(val2.divide(val1));
                         break;
 
                     case '*':
-                        stack.push(val2*val1);
+                        stack.push(val2.multiply(val1));
                         break;
                 }
             }

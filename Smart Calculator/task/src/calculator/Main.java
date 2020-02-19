@@ -1,5 +1,6 @@
 package calculator;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Map<String, Integer> variables = new HashMap<>();
+        Map<String, BigInteger> variables = new HashMap<>();
 
         while (true) {
             String incoming = scanner.nextLine();
@@ -37,8 +38,8 @@ public class Main {
                     }    else if (input.matches("[-]? \\d*")) {
                         System.out.println(input);
                     } else if (verifySum(input, variables)) {
-                        int result=(calculate(input, variables));
-                        if (result!=Integer.MAX_VALUE) System.out.println(result);
+                        BigInteger result=(calculate(input, variables));
+                        if (!result.equals(BigInteger.valueOf(234))) System.out.println(result);
                     } else {
 
                         if (verifyVar(input)) {
@@ -70,7 +71,7 @@ public class Main {
         System.out.println("Bye!");
     }
 
-    public static String replaceVar(String input, Map<String, Integer> variables) {
+    public static String replaceVar(String input, Map<String, BigInteger> variables) {
         String[] temp = input.split(" ");
         for (int i = 0; i < temp.length; i++) {
             if (variables.containsKey(temp[i])) {
@@ -86,7 +87,7 @@ public class Main {
         return str;
     }
 
-    public static boolean verifySum(String input, Map<String, Integer> variables) {
+    public static boolean verifySum(String input, Map<String, BigInteger> variables) {
         String str = replaceVar(input, variables);
         Pattern pattern = Pattern.compile("([\\(\\+-]*\\s*\\d+\\s*){1}([\\+-\\/\\*\\(\\)]+\\s*\\d+\\s*)*");
         Matcher matcher = pattern.matcher(str);
@@ -107,19 +108,19 @@ public class Main {
         return false;
     }
 
-    public static void varAssign(String input, Map<String, Integer> variables) {
+    public static void varAssign(String input, Map<String, BigInteger> variables) {
         String[] temparr = input.split("( = )|( =)|(= )|(=)");
         if (variables.containsKey(temparr[1])) {
             temparr[1] = String.valueOf(variables.get(temparr[1]));
         }
         try {
-            variables.put(temparr[0], Integer.parseInt(temparr[1]));
+            variables.put(temparr[0], new BigInteger(temparr[1]));
         } catch (NumberFormatException e) {
             System.out.println("Invalid assignment");
         }
     }
 
-    public static int calculate(String input, Map<String, Integer> variables) {
+    public static BigInteger calculate(String input, Map<String, BigInteger> variables) {
 
         input = replaceVar(input, variables);
         Pattern digit = Pattern.compile("\\d+");
@@ -140,7 +141,7 @@ public class Main {
         } catch (Exception e) {
         System.out.println("Invalid expression");
         }
-        return Integer.MAX_VALUE;
+        return BigInteger.valueOf(234);
     }
 }
 
